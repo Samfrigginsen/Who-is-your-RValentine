@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your RValentine!</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    #rvalentine-image {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div id="snow-container"></div>
+  <script>
+    const snowContainer = document.getElementById('snow-container');
+    function createSnowflake() {
+      const snowflake = document.createElement('div');
+      snowflake.classList.add('snowflake');
+      snowflake.textContent = '❤️';
+      snowflake.style.left = Math.random() * 100 + 'vw';
+      snowflake.style.animationDuration = Math.random() * 7 + 9 + 's';
+      snowflake.style.fontSize = Math.random() * 1.5 + 1 + 'rem';
+      snowflake.style.opacity = Math.random();
+      snowContainer.appendChild(snowflake);
+      setTimeout(() => { snowflake.style.transition = 'opacity 2s'; snowflake.style.opacity = '0'; }, 5000);
+      setTimeout(() => { snowflake.remove(); }, 7000);
+    }
+    setInterval(createSnowflake, 200);
+  </script>
+
+  <div id="results-container">
+    <h1>Your RValentine Is...</h1>
+    <div id="rvalentine-result">
+      <img id="rvalentine-image" alt="RValentine Image" src="">
+      <h2 id="rvalentine-name"></h2>
+      <p id="rvalentine-description"></p>
+    </div>
+    <button onclick="restartQuiz()">Take the Quiz Again</button>
+  </div>
+
+  <script>
+    function getQueryParameter(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+    const rvalentine = getQueryParameter("rvalentine");
+
+    const rvalentineDescriptions = {
+      "Boy Next Door RV": "Your flannel-wearing, fluffy-haired RValentine will be waiting at the door with a vibrant bouquet of flowers and a smile to rival the sun ☀️",
+      "Gym Enthusiast RV": "Health is wealth and your RValentine knows it! He will make sure you only eat the healthiest food on your date ✨",
+      "Skater Boy RV": "Your RValentine is the coolest boy on the block! Fun, playful, and active—he'll make sure you have the best Valentine's Day ever 🛹",
+      "CEO RV": "The man, the legend, the RValentine that will surely treat you like a princess 👑",
+      "Cat Boy RV": "This cute, affectionate RValentine will give you a sweetness overload 🎀"
+    };
+
+    const rvalentineImages = {
+      "Boy Next Door RV": "Photos/boy.jpeg",
+      "Gym Enthusiast RV": "Photos/gym.jpeg",
+      "Skater Boy RV": "Photos/sktr.jpeg",
+      "CEO RV": "Photos/ceo.jpeg",
+      "Cat Boy RV": "Photos/cat.jpeg"
+    };
+
+    const rvalentineNameElement = document.getElementById("rvalentine-name");
+    const rvalentineDescriptionElement = document.getElementById("rvalentine-description");
+    const rvalentineImageElement = document.getElementById("rvalentine-image");
+
+    if (rvalentine && rvalentineDescriptions[rvalentine]) {
+      rvalentineNameElement.textContent = rvalentine;
+      rvalentineDescriptionElement.textContent = rvalentineDescriptions[rvalentine];
+      rvalentineImageElement.src = rvalentineImages[rvalentine];
+    } else {
+      rvalentineNameElement.textContent = "Unknown RValentine";
+      rvalentineDescriptionElement.textContent = "Something went wrong. Try taking the quiz again!";
+    }
+
+    function restartQuiz() {
+      window.location.href = 'quiz.html';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who is Your RValentine?</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+    <div id="snow-container"></div>
+
+    <script>
+        const snowContainer = document.getElementById('snow-container');
+
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.textContent = '❤️'; // Snowflake symbol
+            snowflake.style.left = Math.random() * 100 + 'vw'; // Random horizontal position
+            snowflake.style.animationDuration = Math.random() * 7 + 9 + 's'; // Random fall speed
+            snowflake.style.fontSize = Math.random() * 1.5 + 1 + 'rem'; // Random size
+            snowflake.style.opacity = Math.random(); // Random transparency
+            snowContainer.appendChild(snowflake);
+
+            // Add smooth fade-out effect before removal
+            setTimeout(() => {
+                snowflake.style.transition = 'opacity 2s'; // 2s fade-out duration
+                snowflake.style.opacity = '0'; // Fade out the snowflake
+            }, 5000); // Start fading after 5 seconds
+
+            // Remove the snowflake after fade-out completes
+            setTimeout(() => {
+                snowflake.remove();
+            }, 7000); // Remove it 7 seconds after creation
+        }
+
+        // Generate snowflakes at intervals
+        setInterval(createSnowflake, 200);
+    </script>
+
+    <header>
+        <h1>Who is Your RValentine?</h1>
+        <p>Take this quick quiz to find out which RAVN is your date on RValentine’s Day!</p>
+        <button onclick="startQuiz()">Start Quiz</button>
+    </header>
+
+    <script>
+        function startQuiz() {
+            window.location.href = './quiz.html';
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who is Your RValentine? - Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div id="snow-container"></div>
+  <script>
+    const snowContainer = document.getElementById('snow-container');
+    function createSnowflake() {
+      const snowflake = document.createElement('div');
+      snowflake.classList.add('snowflake');
+      snowflake.textContent = '❤️';
+      snowflake.style.left = Math.random() * 100 + 'vw';
+      snowflake.style.animationDuration = Math.random() * 7 + 9 + 's';
+      snowflake.style.fontSize = Math.random() * 1.5 + 1 + 'rem';
+      snowflake.style.opacity = Math.random();
+      snowContainer.appendChild(snowflake);
+      setTimeout(() => { snowflake.style.transition = 'opacity 2s'; snowflake.style.opacity = '0'; }, 5000);
+      setTimeout(() => { snowflake.remove(); }, 7000);
+    }
+    setInterval(createSnowflake, 200);
+  </script>
+
+  <div id="quiz-container">
+    <header>
+      <h1>Who is Your RValentine?</h1>
+    </header>
+    <div id="question-container"></div>
+    <button id="next-button" onclick="nextQuestion()" disabled>Next</button>
+  </div>
+
+  <script>
+    const questions = [
+      "What's your favorite leisure activity?",
+      "What's your favorite album/playlist?",
+      "Which romantic cover do you love the most?",
+      "Where do you want to go on a date?",
+      "What do you want to eat/drink on your date?"
+    ];
+
+    const answers = [
+      ["Streaming RV on SoundCloud", "Watching Bye Bye Bye MV", "Hanging out in his safe space community note", "Scrolling through his Instagram", "Listening to his covers"],
+      ["Demian", "untitled00", "Roses of the Galaxy", "Velvet Christmas"],
+      ["Wise Men Say", "I Found You", "Glimpse of Us", "Golden Hour", "Love Me Tender"],
+      ["Head to the skate park", "A stroll along the Han River", "Hanging out at the gym", "Spend a day at an amusement park", "Stargazing someplace outside the city"],
+      ["Fried eggs (made by RAVN!)", "Korean BBQ", "Fruit salad", "Blueberry smoothie"]
+    ];
+
+    // Answer mapping to categories for each question
+    const categoryMapping = {
+      "Boy Next Door RV": [
+        "Hanging out in his safe space community note", 
+        "Velvet Christmas", 
+        "Wise Men Say", 
+        "A stroll along the Han River", 
+        "Fried eggs (made by RAVN!)"
+      ],
+
+      "Gym Enthusiast RV": [
+        "Scrolling through his Instagram", 
+        "Roses of the Galaxy", 
+        "I Found You", 
+        "Hanging out at the gym", 
+        "Blueberry smoothie"
+      ],
+
+      "Skater Boy RV": [
+        "Watching Bye Bye Bye MV", 
+        "Demian", 
+        "Glimpse of Us", 
+        "Head to the skate park", 
+        "Fruit salad"
+      ],
+
+      "CEO RV": [
+        "Streaming RV on SoundCloud", 
+        "untitled00", 
+        "Love Me Tender", 
+        "Stargazing someplace outside the city", 
+        "Fried eggs (made by RAVN!)"
+      ],
+
+      "Cat Boy RV": [
+        "Listening to his covers", 
+        "Roses of the Galaxy", 
+        "Golden Hour", 
+        "Spend a day at an amusement park", 
+        "Korean BBQ"
+      ]
+    };
+
+    let userSelections = [];
+    let currentQuestionIndex = 0;
+
+    const questionContainer = document.getElementById("question-container");
+    const nextButton = document.getElementById("next-button");
+
+    function renderQuestion() {
+      questionContainer.innerHTML = "";
+      const questionText = document.createElement("h2");
+      questionText.textContent = questions[currentQuestionIndex];
+      questionContainer.appendChild(questionText);
+
+      answers[currentQuestionIndex].forEach((answer, index) => {
+        const answerButton = document.createElement("button");
+        answerButton.textContent = answer;
+        answerButton.className = "answer-button";
+        answerButton.onclick = () => selectAnswer(answer);
+        questionContainer.appendChild(answerButton);
+      });
+      nextButton.disabled = true;
+    }
+
+    function selectAnswer(answer) {
+      userSelections[currentQuestionIndex] = answer;
+      nextButton.disabled = false;
+    }
+
+    function nextQuestion() {
+      if (nextButton.disabled) return;
+      currentQuestionIndex++;
+      if (currentQuestionIndex < questions.length) {
+        renderQuestion();
+      } else {
+        calculateResult();
+      }
+    }
+
+    function calculateResult() {
+      // Tally category selections based on user answers
+      let categoryScores = {
+        "Boy Next Door RV": 0,
+        "Gym Enthusiast RV": 0,
+        "Skater Boy RV": 0,
+        "CEO RV": 0,
+        "Cat Boy RV": 0
+      };
+
+      userSelections.forEach(answer => {
+        Object.keys(categoryMapping).forEach(category => {
+          if (categoryMapping[category].includes(answer)) {
+            categoryScores[category]++;
+          }
+        });
+      });
+
+      // Find the category with the highest score
+      let resultCategory = "";
+      let maxScore = -1;
+      for (let category in categoryScores) {
+        if (categoryScores[category] > maxScore) {
+          maxScore = categoryScores[category];
+          resultCategory = category;
+        }
+      }
+
+      window.location.href = `answer.html?rvalentine=${encodeURIComponent(resultCategory)}`;
+    }
+
+    renderQuestion();
+  </script>
+</body>
+</html>

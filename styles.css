@@ -1,0 +1,172 @@
+/* Ensures body content is centered */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: #d397c9; /* Light winter blue */
+    color: #333;
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    text-align: center; /* Ensures text content inside header is centered */
+}
+
+/* Custom font for title */
+@font-face {
+    font-family: 'Birloves'; /* Name for the font */
+    src: url('./Birloves.otf') format('opentype'); /* Path to the font file */
+    font-weight: normal;
+    font-style: normal;
+}
+
+h1 {
+    font-family: 'Birloves', sans-serif; /* Use custom font */
+    font-size: 2.5rem;
+    color: #f7f7f7;
+    margin: 0 0 20px 0;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6); /* Stronger shadow for visibility */
+}
+
+h2 {
+    font-size: 1.9rem;
+    color: #f7f7f7;
+    margin: 0 0 1px 0;
+    padding: 0 20px; /* Adds 20px padding on the left and right */
+}
+
+h3 {
+    font-family: 'Birloves', sans-serif; /* Use custom font */
+    font-size: 2.1rem;
+    color: #f7f7f7;
+    margin: 0 0 20px 0;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6); /* Stronger shadow for visibility */
+}
+
+
+/* Style the description text */
+p {
+    font-size: 1.2rem;
+    color: #e0e0e0;
+    margin: 20px 20px 30px 20px; /* Add space to the top, left, and right */
+}
+
+
+/* Style the button */
+button {
+    font-size: 1.2rem;
+    padding: 15px 30px;
+    background-color: #e74c3c; /* Red-ish for a warmer, more passionate look */
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 90%; /* Ensure all buttons fill the width of their container */
+
+    display: block; /* Makes the button behave like a block element */
+    margin-left: auto; /* Centers the button horizontally */
+    margin-right: auto; /* Centers the button horizontally */
+}
+
+
+button:hover {
+    background-color: #c0392b; /* Darker red when hovered */
+    transform: translateY(-5px); /* Hover effect */
+}
+
+button:active {
+    transform: translateY(2px); /* Button press effect */
+}
+
+/* Snowflake container */
+#snow-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.snowflake {
+    position: absolute;
+    top: -10px;
+    color: white;
+    font-size: 1.2rem;
+    opacity: 0.9;
+    animation: fall 10s linear infinite, sway 5s ease-in-out infinite, fadeOut 2s 8s forwards;
+}
+
+/* Snowflake animations */
+@keyframes fall {
+    0% {
+        transform: translateY(-100px);
+    }
+    100% {
+        transform: translateY(100vh);
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+#results-container {
+    margin-top: 50px; /* Add some space at the top */
+    padding-top: 10px; /* Optionally add padding to create some internal space */
+    max-width: 100%; /* Ensure it doesn't exceed screen width */
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds */
+    box-sizing: border-box; /* Ensure padding is accounted for in width */
+}
+
+button {
+    margin-top: 10px; /* Add some space between buttons */
+    margin-bottom: 10px;
+}
+
+body {
+    overflow-y: auto; /* Allow vertical scrolling */
+}
+
+#next-button {
+    font-size: 1.2rem;
+    padding: 15px 30px;
+    background-color: #e74c3c; /* Red-ish for a warmer, more passionate look */
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 90%; /* Ensure all buttons fill the width of their container */
+
+    display: block; /* Makes the button behave like a block element */
+    margin-left: auto; /* Centers the button horizontally */
+    margin-right: auto; /* Centers the button horizontally */
+}
+
+
+/* Disabled button styling */
+button:disabled {
+    background-color: #000000; /* Gray background when disabled */
+    color: #f70000; /* Gray text */
+    cursor: not-allowed; /* Show "not allowed" cursor */
+    opacity: 0.6; /* Slight transparency for a disabled effect */
+    transform: none; /* No hover or press effects when disabled */
+}
+
+/* Next button-specific styling when enabled */
+#next-button.enabled {
+    background-color: #e74c3c; /* Match default enabled button color */
+    color: white; /* White text */
+    cursor: pointer;
+    opacity: 1; /* Fully opaque */
+}
