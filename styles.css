@@ -33,12 +33,12 @@ h1 {
     margin: 0 0 20px 0;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6); /* Stronger shadow for visibility */
 }
-
+ 
 h2 {
     font-size: 1.9rem;
     color: #f7f7f7;
     margin: 0 0 1px 0;
-    padding: 0 20px; /* Adds 20px padding on the left and right */
+    padding: 0 20px; /* Adds 20px padding on the left andd right */
 }
 
 h3 {
