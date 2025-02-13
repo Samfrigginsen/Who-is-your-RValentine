@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
-    background: #d397c9; /* Light winter blue */
+    background: #ffb3ba; /* New pink background */
     color: #333;
     display: flex;
     justify-content: center; /* Center content horizontally */
@@ -16,14 +16,18 @@ body {
 
 /* Custom font for title */
 @font-face {
-    font-family: 'Birloves'; /* Name for the font */
-    src: url('./Birloves.otf') format('opentype'); /* Path to the font file */
+    font-family: 'EmilysCandy';
+    src: url('EmilysCandy-Regular.woff2') format('woff2'),
+         url('EmilysCandy-Regular.woff') format('woff'),
+         url('EmilysCandy-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
+
+
 h1 {
-    font-family: 'Birloves', sans-serif; /* Use custom font */
+    font-family: 'EmilysCandy', sans-serif; /* Use custom font */
     font-size: 2.5rem;
     color: #f7f7f7;
     margin: 0 0 20px 0;
@@ -38,7 +42,7 @@ h2 {
 }
 
 h3 {
-    font-family: 'Birloves', sans-serif; /* Use custom font */
+    font-family: 'EmilysCandy', sans-serif; /* Use custom font */
     font-size: 2.1rem;
     color: #f7f7f7;
     margin: 0 0 20px 0;
@@ -79,7 +83,9 @@ button:hover {
 
 button:active {
     transform: translateY(2px); /* Button press effect */
+    background-color: #d94c61; /* Even darker shade when pressed */
 }
+
 
 /* Snowflake container */
 #snow-container {
@@ -140,33 +146,61 @@ body {
 #next-button {
     font-size: 1.2rem;
     padding: 15px 30px;
-    background-color: #e74c3c; /* Red-ish for a warmer, more passionate look */
+    background-color: #ff677d; /* Soft pink-red */
     color: white;
     border: none;
     border-radius: 25px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
     width: 90%; /* Ensure all buttons fill the width of their container */
-
-    display: block; /* Makes the button behave like a block element */
-    margin-left: auto; /* Centers the button horizontally */
-    margin-right: auto; /* Centers the button horizontally */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Emily's Candy'
 }
-
 
 /* Disabled button styling */
 button:disabled {
-    background-color: #000000; /* Gray background when disabled */
-    color: #f70000; /* Gray text */
-    cursor: not-allowed; /* Show "not allowed" cursor */
-    opacity: 0.6; /* Slight transparency for a disabled effect */
-    transform: none; /* No hover or press effects when disabled */
+    background-color: #555; /* Muted gray for disabled state */
+    color: #aaa; /* Lighter gray text */
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: none;
 }
 
 /* Next button-specific styling when enabled */
 #next-button.enabled {
-    background-color: #e74c3c; /* Match default enabled button color */
-    color: white; /* White text */
+    background-color: #ff677d; /* Match default enabled button color */
+    color: white;
     cursor: pointer;
-    opacity: 1; /* Fully opaque */
+    opacity: 1;
+}
+
+/* Darker shade when an option is selected */
+#next-button.selected {
+    background-color: #9b3c49; /* Slightly darker pink-red */
+}
+
+/* Additional complementary button colors */
+button.alt {
+    background-color: #ff9a8b; /* Soft coral */
+}
+
+button.alt:hover {
+    background-color: #ff7e6b; /* Slightly darker coral */
+}
+
+button.secondary {
+    background-color: #ffcccb; /* Light pastel pink */
+}
+
+button.secondary:hover {
+    background-color: #ffbdbd; /* Slightly darker pastel pink */
+}
+
+/* Darker shade when an option is selected */
+button:active, 
+button.selected {
+    background-color: #d94c61 !important; /* Darker pink-red */
+    transform: translateY(2px); /* Button press effect */
 }
